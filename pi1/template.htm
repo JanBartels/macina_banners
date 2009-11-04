@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Banner template</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+<body>
+<h1>Bannertemplate</h1>
+<p>available subparts: </p>
+<p>###table### <br />
+  ###row### &lt;- part between the row markers is looped </p>
+<p>available wraps: </p>
+<p>###bannerlink### &lt;- part between the bannerlink markers is wraped by the link of the banneritem </p>
+<p>available markers to place in the template: </p>
+<p>###banner### &lt;- the compiled banner with alttext, link and clickcount <br />
+  ###alttext### &lt;- just the alttext <br />
+  ###filename### &lt;- image/swf filename <br />
+  ###url### &lt;- the banner url <br />
+  ###impressions### &lt;- immpressions count <br />
+  ###clicks### &lt;- clicks count <br />
+  ###edit### &lt;- editpanel for loged in BE users</p>
+  
+<!--- ###template_banners### begin -->
+<table border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <!-- ###row### begin -->
+    <td align="left" valign="middle">###banner######edit###</td>
+    <!-- ###row### end -->
+  </tr>
+</table>
+<!--- ###template_banners### end -->
+
+</body>
+</html>
