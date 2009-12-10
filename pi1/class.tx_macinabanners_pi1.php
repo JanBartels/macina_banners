@@ -52,8 +52,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 	function main($content, $conf) {
 		global $TYPO3_DB;
 		$this->pi_USER_INT_obj=1;
-			
-		#t3lib_div::debug(array ("content"=>$content, "conf"=>$conf));
+
 		// forwareder
 		if ($this->piVars['banneruid']){
 			$this->conf = $conf;
@@ -65,13 +64,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 			if ($record != false) {
 				// update clicks
-				/* medialights: use typo db functions instead of mysql
-				$clicksquery = 'UPDATE tx_macinabanners_banners SET clicks = clicks+1 WHERE uid = ' . $this->piVars['banneruid'];
-				$clicks = mysql(TYPO3_db, $clicksquery);
-				if (mysql_error())
-					t3lib_div::debug(array (mysql_error(), $clicksquery ));
-				 t3lib_div::debug($record);
-				*/
 				$TYPO3_DB->exec_UPDATEquery(
 					'tx_macinabanners_banners',
 					'uid='.$TYPO3_DB->fullQuoteStr($record['uid'], 'tx_macinabanners_banners'),
@@ -154,17 +146,15 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		$this->siteRelPath = $GLOBALS['TYPO3_LOADED_EXT'][$this->extKey]['siteRelPath'];
 		 
 		// order by
-		$orderby = 'ORDER BY sorting';
-		 
-		// Number of results to show in a listing.
-		$this->internal['results_at_a_time'] = t3lib_div::intInRange($conf['results_at_a_time'], 0, 1000, 1000);
+		$orderby = 'sorting';
 		 
 		 //passende sprache oder sprachunabhaengig
-		$where .= ' AND (sys_language_uid= ' . $GLOBALS['TSFE']->sys_language_uid . ' OR sys_language_uid = -1)';
+		$where .= '(sys_language_uid= ' . $GLOBALS['TSFE']->sys_language_uid . ' OR sys_language_uid = -1)';
+		
+		// enable fields
+		$where .= $this->cObj->enableFields('tx_macinabanners_banners');
 		
 		// nur banner mit dem richtigen placement (left right top bottom) holen
-		//medialights: change sql query to support multiple categories
-		//$where .= ' AND placement LIKE \'' . $conf['placement'] . '\'';
 		$allowedPlacements = t3lib_div::trimExplode(',',$conf['placement']);
 		if (count($allowedPlacements) > 0) {
 			$placementClause = '';
@@ -180,7 +170,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		
 		// alle banner die die aktuelle page id nicht in  excludepages stehen haben
 		$where .= "AND NOT ( excludepages regexp '[[:<:]]".$GLOBALS['TSFE']->id."[[:>:]]' )"; 
-		
+
 		//medialights
 		$queryPerformed = true;
 		//Prepare and execute listing query
@@ -205,8 +195,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 					}
 				}
 			}
-
-
 			
 			//get parameters
 			$currentParameters = $_POST + $_GET;
@@ -225,20 +213,14 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			} else $queryPerformed = false;
 
 		} else {
-		//show all banners
-			/* medialights: use typo3 db functions instead of mysql
-			$query = $this->pi_list_query('tx_macinabanners_banners', 0, $where, '', '', $orderby);
-			$res = mysql(TYPO3_db, $query);
-			*/
-			$res = $this->pi_exec_query('tx_macinabanners_banners', 0, $where, '', '', $orderby);
+			//show all banners
+			$res = $TYPO3_DB->exec_SELECTquery('*', 'tx_macinabanners_banners', $where, '', $orderby);
 		}
-		
-		//medialights: error handling via mysql not needed if typo3 db functions are used
-		//if (mysql_error()) t3lib_div::debug(array (mysql_error(), $query ));
-			
+
 		// banner aussortieren
 		$bannerdata = array();
 		while ($queryPerformed && $row = $TYPO3_DB->sql_fetch_assoc($res)) {
+
 			if($row['pages'] && $row['recursiv']){ // wenn pages nicht leer und rekursiv angehakt ist
 				
 				// liste der pageids rekursiv holen
@@ -265,7 +247,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			}
 		}
 
-		
 		$count = count($bannerdata);
 		// use mode "random
 		if ($conf['mode'] == 'random' && $count > 1) {
@@ -293,8 +274,8 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		$tablerowarray = $this->cObj->getSubpart($template, $rowmarker);
 		 
 		$rowdata = '';
-		 
-		 // limit number of banners shown
+		
+		// limit number of banners shown
 		$qt = $conf['results_at_a_time'] < count($bannerdata) ? $conf['results_at_a_time'] : count($bannerdata);
 
 		for ($i=0; $i<$qt; $i++){
@@ -302,11 +283,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$row = $bannerdata[$i];
 			
 			// update impressionsfeld on rendering banner
-			/* medialights: use typo3 db functions instead of mysql
-			$impressionsquery = 'UPDATE tx_macinabanners_banners SET impressions = impressions+1 WHERE uid = ' . $row['uid'];
-			$impressions = mysql(TYPO3_db, $impressionsquery);
-			if (mysql_error()) t3lib_div::debug(array (mysql_error(), $impressionsquery ));
-			*/
 			$TYPO3_DB->exec_UPDATEquery(
 				'tx_macinabanners_banners',
 				'uid='.$TYPO3_DB->fullQuoteStr($row['uid'], 'tx_macinabanners_banners'),
@@ -321,14 +297,21 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 			switch($row['bannertype']) {
 				case 0:
+				
+				/* 
+				* Grafik per Typoscript nach belieben zu konfigurieren
+				* Danke an Gernot Ploiner
+				*/
 				$img = $this->conf['image.'];
-				 
-				if ($row['maxw'] < $this->conf['image.']['file.']['maxW'] && $row['maxw']>0) {
-					$img['file.']['maxW'] = $row['maxw'];
-				}
 				$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
 				$img['alttext'] = $row['alttext'];
 
+				$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
+				array_walk_recursive($img, array($this, 'replace_field_image'));
+
+				$this->AltText = $row['alttext'];
+				array_walk_recursive($img, array($this, 'replace_field_alttext'));
+				
 				$img = $this->cObj->IMAGE($img);
 				 
 				// link image with pagelink und banneruid as getvar
@@ -419,16 +402,20 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		switch($this->internal['currentRow']['bannertype']) {
 		case 0:
 			 
+			/* 
+			* Grafik per Typoscript nach belieben zu konfigurieren
+			* Danke an Gernot Ploiner
+			*/
 			$img = $this->conf['image.'];
+			$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
+			$img['alttext'] = $row['alttext'];
+
+			$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
+			array_walk_recursive($img, array($this, 'replace_field_image'));
+
+			$this->AltText = $row['alttext'];
+			array_walk_recursive($img, array($this, 'replace_field_alttext'));
 			
-			if ($this->internal['currentRow']['maxw'] < $this->conf['image.']['file.']['maxW']) {
-				$img['file.']['maxW'] = $this->internal['currentRow']['maxw'];
-			}
-			
-			
-			$img['file'] = 'uploads/tx_macinabanners/' . $this->internal['currentRow']['image'];
-			$img['alttext'] = $this->internal['currentRow']['alttext'];
-			 
 			$img = $this->cObj->IMAGE($img);
 			
 				// link image with pagelink und banneruid as getvar
@@ -484,6 +471,16 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		}
 		$content .= "\">" . $string . "</div>\n";
 		return $content;
+	}
+	function replace_field_image(&$item, $key) {
+		if ($item == "field_image") {
+			$item = $this->ImageName;
+		}
+	}
+	function replace_field_alttext(&$item, $key) {
+		if ($item == "field_alttext") {
+			$item = $this->AltText;
+		}
 	}
 }
  
