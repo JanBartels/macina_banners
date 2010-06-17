@@ -170,10 +170,9 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		// alle banner die die aktuelle page id nicht in  excludepages stehen haben
 		$where .= "AND NOT ( excludepages regexp '[[:<:]]".$GLOBALS['TSFE']->id."[[:>:]]' )";
 
-		// FIX pidList beachten !! Für Version 1.5.2
-		if ( $conf['pidList'] != null && $conf['pidList'] != '' )
-		{
-			$where .= " AND pid IN ( ".$conf['pidList']." ) ";
+		// FIX pidList beachten !! Fuer Version 1.5.2
+		if (!empty($conf['pidList'])) {
+			$where .= ' AND pid IN ( '.$conf['pidList'].' ) ';
 		}
 
 		//medialights
@@ -202,7 +201,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			}
 
 			//get parameters
-			$currentParameters = $_POST + $_GET;
+			$currentParameters = t3lib_div::_GET() + t3lib_div::_POST();
 
 			$ids = '';
 			foreach ($currentParameters as $parameter => $value) {
@@ -221,18 +220,27 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$res = $TYPO3_DB->exec_SELECTquery('*', 'tx_macinabanners_banners', $where, '', $orderby);
 		}
 
+		// for caching
+		$parentArr = array();
+
 		// banner aussortieren
 		$bannerdata = array();
 		while ($queryPerformed && $row = $TYPO3_DB->sql_fetch_assoc($res)) {
 
 			if ($row['pages'] && $row['recursiv']){ // wenn pages nicht leer und rekursiv angehakt ist
-				
-				// liste der pageids rekursiv holen
-				$pidlist = $this->pi_getPidList($row['pages'],255);
-				
-				$pidArray = array_unique(t3lib_div::trimExplode(',',$pidlist,1));
-				#t3lib_div::debug(array($pidlist,$pidArray));
-				if(in_array($GLOBALS['TSFE']->id,$pidArray)){
+
+				// generiert zur aktuellen Seite alle Elternseiten und prueft ob in der Schnittemenge der
+				// Elternseiten mit der erlaubten Bannerseiten mindestens ein Eintrag drinnen ist.
+				if (count($parentArr) == 0) {
+					foreach ($GLOBALS['TSFE']->tmpl->rootLine as $tmp) {
+						$parentArr[] = $tmp['uid'];
+					}
+				}
+
+				$bannerPidArr = array_unique(t3lib_div::trimExplode(',',$row['pages'],1));
+				$diffArr = array_intersect($parentArr, $bannerPidArr);
+
+				if (count($diffArr) > 0) {
 					$bannerdata[] = $row;
 				}
 			} else if ($row['pages'] && !$row['recursiv']){
@@ -383,7 +391,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			return;  // no banners
 		}
 	}
-	
+
 	/**
 	 * output of a single view element called by pi_list_makelist
 	 *
