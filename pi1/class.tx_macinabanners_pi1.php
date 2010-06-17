@@ -374,15 +374,13 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 			$rowdata .= $this->cObj->substituteMarkerArrayCached($tablerowarray, $markerArray, array (), $wrappedSubpartArray);
 		}
-		if($rowdata)
-		{
+		if($rowdata) {
 			$subpartArray = array ();
 			$subpartArray['###row###'] = $rowdata;
 			$content = $this->cObj->substituteMarkerArrayCached($template, array (), $subpartArray, array ());
 			return $content;
-		} else
-		{
-			return;  // keine banner
+		} else {
+			return;  // no banners
 		}
 	}
 	
@@ -465,22 +463,22 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 	 * @return	string		html content
 	 */
 	function wrapwithstyles($string, $styles) {
-		$content = "<div style=\"";
+		$content = '<div style="';
 		foreach ($styles as $key => $value) {
 			$content .= $key . ':' . $value . 'px; ';
 		}
-		$content .= "\">" . $string . "</div>\n";
+		$content .= '">' . $string . "</div>\n";
 		return $content;
 	}
 
 	function replace_field_image(&$item, $key) {
-		if ($item == "field_image") {
+		if ($item == 'field_image') {
 			$item = $this->ImageName;
 		}
 	}
 
 	function replace_field_alttext(&$item, $key) {
-		if ($item == "field_alttext") {
+		if ($item == 'field_alttext') {
 			$item = $this->AltText;
 		}
 	}
