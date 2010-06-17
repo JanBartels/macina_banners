@@ -171,6 +171,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		// alle banner die die aktuelle page id nicht in  excludepages stehen haben
 		$where .= "AND NOT ( excludepages regexp '[[:<:]]".$GLOBALS['TSFE']->id."[[:>:]]' )"; 
 
+		// FIX pidList beachten !! Für Version 1.5.2
+		if ( $conf['pidList'] != null && $conf['pidList'] != '' )
+		{
+			$where .= " AND pid IN ( ".$conf['pidList']." ) ";
+		}
+
 		//medialights
 		$queryPerformed = true;
 		//Prepare and execute listing query
