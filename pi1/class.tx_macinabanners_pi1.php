@@ -316,7 +316,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 				// link image with pagelink und banneruid as getvar
 				if ($row['url']) {
-					$linkArray = split(" ", $row['url']);
+					$linkArray = explode(' ', $row['url']);
 					$wrappedSubpartArray['###bannerlink###'] = t3lib_div::trimExplode("|", $this->cObj->getTypoLink("|", $GLOBALS['TSFE']->id . " " . $linkArray[1] , array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) ) );
 					$banner = join($wrappedSubpartArray['###bannerlink###'], $img);
 				} else {
@@ -327,7 +327,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				case 1:
 
 				if ($row['url']) {
-					$linkArray = split(" ", $row['url']);
+					$linkArray = explode(' ', $row['url']);
 					$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) );
 				}
 
@@ -418,7 +418,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 				// link image with pagelink und banneruid as getvar
 			if ( $this->internal['currentRow']['url']) {
-				$linkArray = split(" ",  $this->internal['currentRow']['url']);
+				$linkArray = explode(' ', $this->internal['currentRow']['url']);
 					$wrappedSubpartArray['###bannerlink###'] = t3lib_div::trimExplode("|", $this->cObj->getTypoLink("|", $GLOBALS['TSFE']->id . " " . $linkArray[1] , array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $this->internal['currentRow']['uid'] ) ) );
 					$banner = join($wrappedSubpartArray['###bannerlink###'], $img);
 				} else {
@@ -430,7 +430,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 		case 1:
 			if ( $this->internal['currentRow']['url']) {
-				$linkArray = split(" ",  $this->internal['currentRow']['url']);
+				$linkArray = explode(' ', $this->internal['currentRow']['url']);
 				$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" =>  $this->internal['currentRow']['uid'] ) );
 			}
 
