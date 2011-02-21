@@ -21,16 +21,15 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
 /** 
  * Class that adds the wizard icon.
  *
  * @author	Wolfgang Becker <wb@macina.com>
  */
-
-
-
 class tx_macinabanners_pi1_wizicon {
-	function proc($wizardItems)	{
+
+	function proc($wizardItems) {
 		global $LANG;
 
 		$LL = $this->includeLocalLang();
@@ -44,16 +43,14 @@ class tx_macinabanners_pi1_wizicon {
 
 		return $wizardItems;
 	}
-	function includeLocalLang()	{
+	
+	function includeLocalLang() {
 		include(t3lib_extMgm::extPath("macina_banners")."locallang.php");
 		return $LOCAL_LANG;
 	}
 }
 
-
-
 if (defined("TYPO3_MODE") && $TYPO3_CONF_VARS[TYPO3_MODE]["XCLASS"]["ext/macina_banners/pi1/class.tx_macinabanners_pi1_wizicon.php"])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]["XCLASS"]["ext/macina_banners/pi1/class.tx_macinabanners_pi1_wizicon.php"]);
 }
-
 ?>
