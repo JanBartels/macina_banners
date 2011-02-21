@@ -53,16 +53,16 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		global $TYPO3_DB;
 		$this->pi_USER_INT_obj=1;
 
-		// forwareder
-		if ($this->piVars['banneruid']){
+		// forwarder
+		if ($this->piVars['banneruid']) {
 			$this->conf = $conf;
 			$this->pi_setPiVarDefaults();
 			$this->pi_loadLL();
 
 			// get link details
-			$record = $this->pi_getRecord('tx_macinabanners_banners',$this->piVars['banneruid'],$checkPage=0);
+			$record = $this->pi_getRecord('tx_macinabanners_banners', $this->piVars['banneruid'],$checkPage=0);
 
-			if ($record != false) {
+			if ($record != FALSE) {
 				// update clicks
 				$TYPO3_DB->exec_UPDATEquery(
 					'tx_macinabanners_banners',
@@ -99,8 +99,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				}
 				/* medialights: didn't work with deactivated caching in 'ext_localconf.php -> addPItoST43'*/
 				//PRS+ 12.08.2005
-				if ($conf['mode'] == 'random' || $conf['mode'] == 'random_all' || $conf['enableParameterRestriction'] == 1)
-				{
+				if ($conf['mode'] == 'random' || $conf['mode'] == 'random_all' || $conf['enableParameterRestriction'] == 1) {
 					$substKey = 'INT_SCRIPT.'.$GLOBALS['TSFE']->uniqueHash();
 					$link='<!--'.$substKey.'-->';
 					$conf['userFunc'] = 'tx_macinabanners_pi1->listView';
@@ -194,7 +193,9 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 						foreach ($values AS $value) {
 							if (isset($parameters[$parameterName][$value])) {
 								$parameters[$parameterName][$value] .= ',' . $row['uid'];
-							} else { $parameters[$parameterName][$value] = $row['uid']; }
+							} else {
+								$parameters[$parameterName][$value] = $row['uid'];
+							}
 						}
 					}
 				}
@@ -206,14 +207,18 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$ids = '';
 			foreach ($currentParameters as $parameter => $value) {
 				if (!empty($value) && isset($parameters[$parameter][$value])) {
-					if ($ids != '') { $ids .= ','; }
+					if ($ids != '') {
+						$ids .= ',';
+					}
 					$ids .= $parameters[$parameter][$value];
 				}
 			}
 
 			if ($ids != '') {
 				$res = $TYPO3_DB->exec_SELECTquery('*', 'tx_macinabanners_banners', 'uid IN ('.$ids.')');
-			} else $queryPerformed = false;
+			} else {
+				$queryPerformed = false;
+			}
 
 		} else {
 			//show all banners
@@ -237,7 +242,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 					}
 				}
 
-				$bannerPidArr = array_unique(t3lib_div::trimExplode(',',$row['pages'],1));
+				$bannerPidArr = array_unique(t3lib_div::trimExplode(',', $row['pages'], 1));
 				$diffArr = array_intersect($parentArr, $bannerPidArr);
 
 				if (count($diffArr) > 0) {
@@ -245,8 +250,8 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				}
 			} else if ($row['pages'] && !$row['recursiv']){
 				// wenn pages nicht leer und rekursiv nicht angehakt ist
-				$pidArray = array_unique(t3lib_div::trimExplode(',',$row['pages'],1));
-				if(in_array($GLOBALS['TSFE']->id,$pidArray)){
+				$pidArray = array_unique(t3lib_div::trimExplode(',', $row['pages'], 1));
+				if (in_array($GLOBALS['TSFE']->id, $pidArray)){
 					$bannerdata[] = $row;
 				}
 			} else {
@@ -286,7 +291,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		// limit number of banners shown
 		$qt = $conf['results_at_a_time'] < count($bannerdata) ? $conf['results_at_a_time'] : count($bannerdata);
 
-		for ($i=0; $i<$qt; $i++){
+		for ($i=0; $i < $qt; $i++) {
 
 			$row = $bannerdata[$i];
 
@@ -298,10 +303,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			);
 
 			// assign borders to array
-			$styles = array ('margin-top' => $row['border_top'],
-							'margin-right' => $row['border_right'],
-							'margin-bottom' => $row['border_bottom'],
-							'margin-left' => $row['border_left'] );
+			$styles = array (
+				'margin-top' => $row['border_top'],
+				'margin-right' => $row['border_right'],
+				'margin-bottom' => $row['border_bottom'],
+				'margin-left' => $row['border_left']
+			);
 
 			switch($row['bannertype']) {
 				case 0:
@@ -373,7 +380,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				$markerArray['###filename###'] = $row['swf'];
 			else
 				$markerArray['###filename###'] = "";
-
 
 			$markerArray['###url###'] = $row['url'];
 			$markerArray['###impressions###'] = $row['impressions'];

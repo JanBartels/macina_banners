@@ -1,4 +1,3 @@
-
 plugin.tx_macinabanners_pi1 {
 	# parser (dont change this)
 	parser < tt_content.text.20.parseFunc

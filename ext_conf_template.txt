@@ -1,5 +1,5 @@
-# cat=basic; type=boolean; label=activateDefaultCategories: If set macina_banners will provide default categories e.g. top
-activateDefaultCategories = 1
-
+# cat=basic; type=boolean; label=activateDefaultCategories: If set macina_banners will provide default categories e.g. top
+activateDefaultCategories = 1
+
 # cat=basic//40; type=options[two_boxes,singlebox,checkbox]; label=renderMode: Decide how the categories should be selected
 renderMode = two_boxes

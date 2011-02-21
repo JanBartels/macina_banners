@@ -8,16 +8,16 @@ $TCA['tx_macinabanners_banners'] = Array (
 	),
 	'feInterface' => $TCA['tx_macinabanners_banners']['feInterface'],
 	'columns' => Array (
-		'hidden' => Array (		
-			'exclude' => 1,	
+		'hidden' => Array (
+			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.hidden',
 			'config' => Array (
 				'type' => 'check',
 				'default' => '0'
 			)
 		),
-		'starttime' => Array (		
-			'exclude' => 1,	
+		'starttime' => Array (
+			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.starttime',
 			'config' => Array (
 				'type' => 'input',
@@ -28,8 +28,8 @@ $TCA['tx_macinabanners_banners'] = Array (
 				'checkbox' => '0'
 			)
 		),
-		'endtime' => Array (		
-			'exclude' => 1,	
+		'endtime' => Array (
+			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.endtime',
 			'config' => Array (
 				'type' => 'input',
@@ -44,11 +44,11 @@ $TCA['tx_macinabanners_banners'] = Array (
 				)
 			)
 		),
-		'fe_group' => Array (		
-			'exclude' => 1,	
+		'fe_group' => Array (
+			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.fe_group',
 			'config' => Array (
-				'type' => 'select',	
+				'type' => 'select',
 				'items' => Array (
 					Array('', 0),
 					Array('LLL:EXT:lang/locallang_general.php:LGL.hide_at_login', -1),
@@ -58,18 +58,18 @@ $TCA['tx_macinabanners_banners'] = Array (
 				'foreign_table' => 'fe_groups'
 			)
 		),
-		'customer' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.customer',		
+		'customer' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.customer',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '30',	
+				'type' => 'input',
+				'size' => '30',
 				'eval' => 'required',
 			)
 		),
-		'bannertype' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.bannertype',		
+		'bannertype' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.bannertype',
 			'config' => Array (
 				'type' => 'select',
 				'items' => Array (
@@ -77,7 +77,7 @@ $TCA['tx_macinabanners_banners'] = Array (
 					Array('LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.bannertype.I.1', '1'),
 					Array('LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.bannertype.I.2', '2'),
 				),
-				'size' => 1,	
+				'size' => 1,
 				'maxitems' => 1,
 			)
 		),
@@ -89,7 +89,7 @@ $TCA['tx_macinabanners_banners'] = Array (
 				'size' => 30,
 				'max' => 30,
 			)
-		),		
+		),
 		'sys_language_uid' => Array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
@@ -118,44 +118,44 @@ $TCA['tx_macinabanners_banners'] = Array (
 		),
 		'l18n_diffsource' => Array(
 			'config'=>array('type'=>'passthrough')
-		),		
-		'image' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.image',		
+		),
+		'image' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.image',
 			'config' => Array (
 				'type' => 'group',
 				'internal_type' => 'file',
-				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],	
-				'max_size' => 1000,	
+				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+				'max_size' => 1000,
 				'uploadfolder' => 'uploads/tx_macinabanners',
-				'show_thumbs' => 1,	
-				'size' => 1,	
+				'show_thumbs' => 1,
+				'size' => 1,
 				'minitems' => 0,
 				'maxitems' => 1,
 			)
 		),
-		'maxw' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.maxw',		
+		'maxw' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.maxw',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
+				'type' => 'input',
+				'size' => '5',
 				'eval' => 'int,nospace',
 			)
 		),
-		'alttext' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.alttext',		
+		'alttext' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.alttext',
 			'config' => Array (
-				'type' => 'input',	
+				'type' => 'input',
 				'size' => '30',
 			)
 		),
-		'url' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.url',		
+		'url' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.url',
 			'config' => Array (
-				'type' => 'input',		
+				'type' => 'input',
 				'size' => '15',
 				'max' => '255',
 				'checkbox' => '',
@@ -172,52 +172,52 @@ $TCA['tx_macinabanners_banners'] = Array (
 				)
 			)
 		),
-		'swf' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.swf',		
+		'swf' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.swf',
 			'config' => Array (
 				'type' => 'group',
 				'internal_type' => 'file',
-				'allowed' => '',	
-				'disallowed' => 'php,php3',	
-				'max_size' => 1000,	
+				'allowed' => '',
+				'disallowed' => 'php,php3',
+				'max_size' => 1000,
 				'uploadfolder' => 'uploads/tx_macinabanners',
-				'size' => 1,	
+				'size' => 1,
 				'minitems' => 0,
 				'maxitems' => 1,
 			)
 		),
-		'flash_width' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.flash_width',		
+		'flash_width' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.flash_width',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
+				'type' => 'input',
+				'size' => '5',
 				'eval' => 'required,int,nospace',
 			)
 		),
-		'flash_height' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.flash_height',		
+		'flash_height' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.flash_height',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
+				'type' => 'input',
+				'size' => '5',
 				'eval' => 'required,int,nospace',
 			)
 		),
 		//medialights: new type html
-		'html' => Array (		
-			'exclude' => 1,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.html',		
+		'html' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.html',
 			'config' => Array (
 				'type' => 'text',
-				'cols' => '30',	
+				'cols' => '30',
 				'rows' => '5',
 			)
 		),
-		'placement' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.placement',		
+		'placement' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.placement',
 			'config' => Array (
 				'type' => 'select',
 				/* medialights: default categories are only added if configured in the EM
@@ -230,110 +230,110 @@ $TCA['tx_macinabanners_banners'] = Array (
 				*/
 				'items' => Array (),
 				'itemsProcFunc' => 'tx_macinabanners_tt_content_tx_macinabanners_placement->main',
-				//medialights: size and maxitems increased from 1				
-				'size' => 5,	
+				//medialights: size and maxitems increased from 1
+				'size' => 5,
 				'maxitems' => 50,
-				
+
 				//medialights: activate icons in select boxes
-				'iconsInOptionTags' => 1				
+				'iconsInOptionTags' => 1
 			)
 		),
-		'border_top' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_top',		
+		'border_top' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_top',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
-				'max' => '4',	
-				'range' => Array ('lower'=>0,'upper'=>1000),	
+				'type' => 'input',
+				'size' => '5',
+				'max' => '4',
+				'range' => Array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'border_right' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_right',		
+		'border_right' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_right',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
-				'max' => '4',	
-				'range' => Array ('lower'=>0,'upper'=>1000),	
+				'type' => 'input',
+				'size' => '5',
+				'max' => '4',
+				'range' => Array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'border_bottom' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_bottom',		
+		'border_bottom' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_bottom',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
-				'max' => '4',	
-				'range' => Array ('lower'=>0,'upper'=>1000),	
+				'type' => 'input',
+				'size' => '5',
+				'max' => '4',
+				'range' => Array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'border_left' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_left',		
+		'border_left' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.border_left',
 			'config' => Array (
-				'type' => 'input',	
-				'size' => '5',	
-				'max' => '4',	
-				'range' => Array ('lower'=>0,'upper'=>1000),	
+				'type' => 'input',
+				'size' => '5',
+				'max' => '4',
+				'range' => Array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'pages' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.pages',		
+		'pages' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.pages',
 			'config' => Array (
-				'type' => 'group',	
-				'internal_type' => 'db',	
-				'allowed' => 'pages',	
-				'size' => 3,	
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'pages',
+				'size' => 3,
 				'minitems' => 0,
 				'maxitems' => 100,
 			)
 		),
-		'recursiv' => Array (		
-			'exclude' => 1,	
+		'recursiv' => Array (
+			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.recursiv',
 			'config' => Array (
 				'type' => 'check',
 				'default' => '0'
 			)
-		),		
-		'excludepages' => Array (		
-			'exclude' => 0,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.excludepages',		
+		),
+		'excludepages' => Array (
+			'exclude' => 0,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.excludepages',
 			'config' => Array (
-				'type' => 'group',	
-				'internal_type' => 'db',	
-				'allowed' => 'pages',	
-				'size' => 3,	
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'pages',
+				'size' => 3,
 				'minitems' => 0,
 				'maxitems' => 100,
 			)
 		),
-		'impressions' => Array (		
-			'exclude' => 1,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.impressions',		
+		'impressions' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.impressions',
 			'config' => Array (
 				'type' => 'none',
 			)
 		),
-		'clicks' => Array (		
-			'exclude' => 1,		
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.clicks',		
+		'clicks' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.clicks',
 			'config' => Array (
 				'type' => 'none',
 			)
 		),
-		'parameters' => Array (        
-			'exclude' => 1,        
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.parameters',        
+		'parameters' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_banners.parameters',
 			'config' => Array (
 				'type' => 'text',
-				'cols' => '30',    
+				'cols' => '30',
 				'rows' => '5',
 			)
 		),
@@ -382,7 +382,6 @@ if ($macinaCfg['renderMode'] == 'singlebox' || $macinaCfg['renderMode'] == 'chec
 unset ($macinaCfg);
 
 
-
 //medialights: add definition for 'tx_macinabanners_categories'
 $TCA['tx_macinabanners_categories'] = Array (
 	'ctrl' => $TCA['tx_macinabanners_categories']['ctrl'],
@@ -391,26 +390,26 @@ $TCA['tx_macinabanners_categories'] = Array (
 	),
 	'feInterface' => $TCA['tx_macinabanners_categories']['feInterface'],
 	'columns' => Array (
-		'description' => Array (        
-			'exclude' => 1,        
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_categories.description',        
+		'description' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_categories.description',
 			'config' => Array (
-				'type' => 'input',    
-				'size' => '30',    
+				'type' => 'input',
+				'size' => '30',
 				'eval' => 'trim',
 			)
 		),
-		'icon' => Array (        
-			'exclude' => 1,        
-			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_categories.icon',        
+		'icon' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:macina_banners/locallang_db.php:tx_macinabanners_categories.icon',
 			'config' => Array (
 				'type' => 'group',
 				'internal_type' => 'file',
-				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],    
-				'max_size' => 500,    
+				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
+				'max_size' => 500,
 				'uploadfolder' => 'uploads/tx_macinabanners',
-				'show_thumbs' => 1,    
-				'size' => 1,    
+				'show_thumbs' => 1,
+				'size' => 1,
 				'minitems' => 0,
 				'maxitems' => 1,
 			)
