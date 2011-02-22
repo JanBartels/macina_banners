@@ -413,7 +413,7 @@ $TCA['tx_macinabanners_categories'] = Array (
 				'minitems' => 0,
 				'maxitems' => 1,
 			)
-        ),
+		),
 	),
 	'types' => Array (
 		'0' => Array('showitem' => 'description;;;;1-1-1, icon')
