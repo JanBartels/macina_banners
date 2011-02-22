@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * Language labels for extension "macina_banners"
  * 
@@ -14,19 +14,19 @@ $LOCAL_LANG = Array (
 	),
 	'de' => Array (
 		'pi1_title' => 'Bannermodul',
-		'pi1_plus_wiz_description' => 'Fügt einen Container zum anzeigen von Bannern ein.',
+		'pi1_plus_wiz_description' => 'FÃ¼gt einen Container zum anzeigen von Bannern ein.',
 	),
 	'no' => Array (
 		'pi1_title' => 'Reklamemodul',
-		'pi1_plus_wiz_description' => 'Legger til et element for å vide reklamebannere på webstedet',
+		'pi1_plus_wiz_description' => 'Legger til et element for Ã¥ vide reklamebannere pÃ¥ webstedet',
 	),
 	'it' => Array (
 	),
 	'fr' => Array (
 	),
 	'es' => Array (
-		'pi1_title' => 'Módulo de banners',
-		'pi1_plus_wiz_description' => 'Añadir contenedor para mostrar banners',
+		'pi1_title' => 'MÃ³dulo de banners',
+		'pi1_plus_wiz_description' => 'AÃ±adir contenedor para mostrar banners',
 	),
 	'nl' => Array (
 	),
@@ -38,7 +38,7 @@ $LOCAL_LANG = Array (
 	),
 	'fi' => Array (
 		'pi1_title' => 'Mainospalkki aliohjelma',
-		'pi1_plus_wiz_description' => 'Lisää mainospalkin näytön sivustolle',
+		'pi1_plus_wiz_description' => 'LisÃ¤Ã¤ mainospalkin nÃ¤ytÃ¶n sivustolle',
 	),
 	'tr' => Array (
 	),
@@ -60,7 +60,7 @@ $LOCAL_LANG = Array (
 	),
 	'hr' => Array (
 		'pi1_title' => 'Banner modul',
-		'pi1_plus_wiz_description' => 'Dodaje kontejner u kome æe se prikazivati banneri na web stranicama',
+		'pi1_plus_wiz_description' => 'Dodaje kontejner u kome Ã¦e se prikazivati banneri na web stranicama',
 	),
 	'hu' => Array (
 	),

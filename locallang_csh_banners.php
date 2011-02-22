@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
 * TCA_DESCR for "tx_macinabanners_banners"
 */
