@@ -50,8 +50,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 	 * @return	string		html content
 	 */
 	function main($content, $conf) {
-		global $TYPO3_DB;
-		$this->pi_USER_INT_obj=1;
+		$this->pi_USER_INT_obj=1; // Any link to yourself won't expect to be cached (no cHash and no_cache=1)
 
 		// forwarder
 		if ($this->piVars['banneruid']) {
@@ -60,13 +59,13 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$this->pi_loadLL();
 
 			// get link details
-			$record = $this->pi_getRecord('tx_macinabanners_banners', $this->piVars['banneruid'],$checkPage=0);
+			$record = $this->pi_getRecord('tx_macinabanners_banners', $this->piVars['banneruid'], $checkPage=0);
 
 			if ($record != FALSE) {
 				// update clicks
-				$TYPO3_DB->exec_UPDATEquery(
+				$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 					'tx_macinabanners_banners',
-					'uid='.$TYPO3_DB->fullQuoteStr($record['uid'], 'tx_macinabanners_banners'),
+					'uid='.$GLOBALS['TYPO3_DB']->fullQuoteStr($record['uid'], 'tx_macinabanners_banners'),
 					array('clicks' => ++$record['clicks'])
 				);
 
@@ -77,20 +76,15 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			}
 		}
 
-		$this->pi_USER_INT_obj = 1; // Any link to yourself won't expect to be cached (no cHash and no_cache=1)
-
 		switch ((string)$conf['CMD']) {
 			case 'singleView':
 				list($t) = explode(':', $this->cObj->currentRecord);
-
 				$this->internal['currentTable'] = $t;
 				$this->internal['currentRow'] = $this->cObj->data;
 				$content = $this->singleView($content, $conf);
-
 				return $content;
-			break;
+				break;
 			default:
-
 				if (strstr($this->cObj->currentRecord, 'tt_content')) {
 					$conf['pidList'] = $this->cObj->data['pages'];
 					$conf['recursive'] = $this->cObj->data['recursive'];
@@ -133,21 +127,15 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 	 * @return	string		html content
 	 */
 	function listView($content, $conf) {
-		global $TYPO3_DB;
-
 		$this->conf = $conf; // Setting the TypoScript passed to this function in $this->conf
 
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();	// Loading the LOCAL_LANG values
 
-
 		$this->siteRelPath = $GLOBALS['TYPO3_LOADED_EXT'][$this->extKey]['siteRelPath'];
 
-		// order by
-		$orderby = 'sorting';
-
 		// passende sprache oder sprachunabhaengig
-		$where .= '(sys_language_uid= ' . $GLOBALS['TSFE']->sys_language_uid . ' OR sys_language_uid = -1)';
+		$where = '(sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid . ' OR sys_language_uid = -1)';
 
 		// enable fields
 		$where .= $this->cObj->enableFields('tx_macinabanners_banners');
@@ -160,19 +148,21 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				if ($placementClause != '') {
 					$placementClause .= ' OR ';
 				}
-
-				$placementClause .= 'placement LIKE \'%'.$placement.'%\'';
+				$placementClause .= 'placement LIKE "%'.$placement.'%"';
 			}
 			$where .= ' AND ('.$placementClause.')';
 		}
 
-		// alle banner die die aktuelle page id nicht in  excludepages stehen haben
-		$where .= "AND NOT ( excludepages regexp '[[:<:]]".$GLOBALS['TSFE']->id."[[:>:]]' )";
+		// alle banner die die aktuelle page id nicht in excludepages stehen haben
+		$where .= " AND NOT ( excludepages regexp '[[:<:]]".$GLOBALS['TSFE']->id."[[:>:]]' )";
 
 		// FIX pidList beachten !! Fuer Version 1.5.2
 		if (!empty($conf['pidList'])) {
 			$where .= ' AND pid IN ( '.$conf['pidList'].' ) ';
 		}
+
+		// order by
+		$orderBy = 'sorting';
 
 		//medialights
 		$queryPerformed = true;
@@ -182,8 +172,8 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$parameters = array();
 
 			//get banners list according to parameters
-			$RS = $TYPO3_DB->exec_SELECTquery('uid, parameters', 'tx_macinabanners_banners', '');
-			while ($row = $TYPO3_DB->sql_fetch_assoc($RS)) {
+			$RS = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid, parameters', 'tx_macinabanners_banners', $where, '', $orderBy);
+			while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($RS)) {
 				if (!empty($row['parameters'])) {
 					$lines = t3lib_div::trimExplode(chr(10), $row['parameters']);
 					foreach ($lines AS $line) {
@@ -215,14 +205,14 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			}
 
 			if ($ids != '') {
-				$res = $TYPO3_DB->exec_SELECTquery('*', 'tx_macinabanners_banners', 'uid IN ('.$ids.')');
+				$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_macinabanners_banners', 'uid IN ('.$ids.')');
 			} else {
 				$queryPerformed = false;
 			}
 
 		} else {
 			//show all banners
-			$res = $TYPO3_DB->exec_SELECTquery('*', 'tx_macinabanners_banners', $where, '', $orderby);
+			$res = $GLOBALS['TYPO3_DB']->exec_SELECTquery('*', 'tx_macinabanners_banners', $where, '', $orderBy);
 		}
 
 		// for caching
@@ -230,7 +220,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 		// banner aussortieren
 		$bannerdata = array();
-		while ($queryPerformed && $row = $TYPO3_DB->sql_fetch_assoc($res)) {
+		while ($queryPerformed && $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) {
 
 			if ($row['pages'] && $row['recursiv']){ // wenn pages nicht leer und rekursiv angehakt ist
 
@@ -248,7 +238,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				if (count($diffArr) > 0) {
 					$bannerdata[] = $row;
 				}
-			} else if ($row['pages'] && !$row['recursiv']){
+			} elseif ($row['pages'] && !$row['recursiv']){
 				// wenn pages nicht leer und rekursiv nicht angehakt ist
 				$pidArray = array_unique(t3lib_div::trimExplode(',', $row['pages'], 1));
 				if (in_array($GLOBALS['TSFE']->id, $pidArray)){
@@ -261,13 +251,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		}
 
 		$count = count($bannerdata);
-		// use mode "random
+		// use mode "random"
 		if ($conf['mode'] == 'random' && $count > 1) {
 			$randomselectnum = rand(0, $count - 1);
 			$randombanner = $bannerdata[$randomselectnum];
 			unset($bannerdata);
 			$bannerdata[] = $randombanner;
-
 		} elseif ($conf['mode'] == 'random_all' && $count > 1) {
 			//media lights: use mode "random_all"
 			shuffle($bannerdata);
@@ -296,9 +285,9 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$row = $bannerdata[$i];
 
 			// update impressionsfeld on rendering banner
-			$TYPO3_DB->exec_UPDATEquery(
+			$GLOBALS['TYPO3_DB']->exec_UPDATEquery(
 				'tx_macinabanners_banners',
-				'uid='.$TYPO3_DB->fullQuoteStr($row['uid'], 'tx_macinabanners_banners'),
+				'uid='.$GLOBALS['TYPO3_DB']->fullQuoteStr($row['uid'], 'tx_macinabanners_banners'),
 				array('impressions' => ++$row['impressions'])
 			);
 
@@ -312,58 +301,52 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 			switch($row['bannertype']) {
 				case 0:
+					/*
+					 * Grafik per Typoscript nach belieben zu konfigurieren
+					 * Danke an Gernot Ploiner
+					 */
+					$img = $this->conf['image.'];
+					$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
+					$img['alttext'] = $row['alttext'];
 
-				/*
-				 * Grafik per Typoscript nach belieben zu konfigurieren
-				 * Danke an Gernot Ploiner
-				 */
-				$img = $this->conf['image.'];
-				$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
-				$img['alttext'] = $row['alttext'];
+					$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
+					array_walk_recursive($img, array($this, 'replace_field_image'));
 
-				$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
-				array_walk_recursive($img, array($this, 'replace_field_image'));
+					$this->AltText = $row['alttext'];
+					array_walk_recursive($img, array($this, 'replace_field_alttext'));
 
-				$this->AltText = $row['alttext'];
-				array_walk_recursive($img, array($this, 'replace_field_alttext'));
+					$img = $this->cObj->IMAGE($img);
 
-				$img = $this->cObj->IMAGE($img);
-
-				// link image with pagelink und banneruid as getvar
-				if ($row['url']) {
-					$linkArray = explode(' ', $row['url']);
-					$wrappedSubpartArray['###bannerlink###'] = t3lib_div::trimExplode("|", $this->cObj->getTypoLink("|", $GLOBALS['TSFE']->id . " " . $linkArray[1] , array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) ) );
-					$banner = join($wrappedSubpartArray['###bannerlink###'], $img);
-				} else {
-					$banner = $img;
-				}
-
-				break;
+					// link image with pagelink und banneruid as getvar
+					if ($row['url']) {
+						$linkArray = explode(' ', $row['url']);
+						$wrappedSubpartArray['###bannerlink###'] = t3lib_div::trimExplode("|", $this->cObj->getTypoLink("|", $GLOBALS['TSFE']->id . " " . $linkArray[1] , array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) ) );
+						$banner = join($wrappedSubpartArray['###bannerlink###'], $img);
+					} else {
+						$banner = $img;
+					}
+					break;
 				case 1:
+					if ($row['url']) {
+						$linkArray = explode(' ', $row['url']);
+						$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) );
+					}
+					$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\">\n";
+					$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $row['swf'] . "\" />\n";
+					$banner .= "<param name=\"quality\" value=\"high\" />\n";
+					$banner .= "<param name=\"allowScriptAccess\" value=\"sameDomain\" />\n";
+					$banner .= "<param name=\"menu\" value=\"false\" />\n";
+					$banner .= "<param name=\"wmode\" value=\"transparent\" />\n";
+					$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
+					$banner .= "<embed src=\"uploads/tx_macinabanners/" . $row['swf'] . "\" FlashVars=\"" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\"></embed>\n";
+					$banner .= "</object>\n";
 
-				if ($row['url']) {
-					$linkArray = explode(' ', $row['url']);
-					$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) );
-				}
-
-				$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\">\n";
-				$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $row['swf'] . "\" />\n";
-				$banner .= "<param name=\"quality\" value=\"high\" />\n";
-				$banner .= "<param name=\"allowScriptAccess\" value=\"sameDomain\" />\n";
-				$banner .= "<param name=\"menu\" value=\"false\" />\n";
-				$banner .= "<param name=\"wmode\" value=\"transparent\" />\n";
-				$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
-				$banner .= "<embed src=\"uploads/tx_macinabanners/" . $row['swf'] . "\" FlashVars=\"" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\"></embed>\n";
-				$banner .= "</object>\n";
-
-				#t3lib_div::debug(array($clickTAG, $linkArray[1]));
-				break;
-
-
+					#t3lib_div::debug(array($clickTAG, $linkArray[1]));
+					break;
 				//medialights: html mode
 				case 2:
-				$banner = $row['html'];
-				break;
+					$banner = $row['html'];
+					break;
 			}
 
 			// funktion to attach styles to wrapping cell
@@ -394,7 +377,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$content = $this->cObj->substituteMarkerArrayCached($template, array (), $subpartArray, array ());
 			return $content;
 		} else {
-			return;  // no banners
+			return '';  // no banners
 		}
 	}
 
@@ -412,60 +395,56 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		$this->pi_loadLL();
 
 		switch($this->internal['currentRow']['bannertype']) {
-		case 0:
+			case 0:
 
-			/*
-			 * Grafik per Typoscript nach belieben zu konfigurieren
-			 * Danke an Gernot Ploiner
-			 */
-			$img = $this->conf['image.'];
-			$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
-			$img['alttext'] = $row['alttext'];
+				/*
+				 * Grafik per Typoscript nach belieben zu konfigurieren
+				 * Danke an Gernot Ploiner
+				 */
+				$img = $this->conf['image.'];
+				$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
+				$img['alttext'] = $row['alttext'];
 
-			$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
-			array_walk_recursive($img, array($this, 'replace_field_image'));
+				$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
+				array_walk_recursive($img, array($this, 'replace_field_image'));
 
-			$this->AltText = $row['alttext'];
-			array_walk_recursive($img, array($this, 'replace_field_alttext'));
+				$this->AltText = $row['alttext'];
+				array_walk_recursive($img, array($this, 'replace_field_alttext'));
 
-			$img = $this->cObj->IMAGE($img);
+				$img = $this->cObj->IMAGE($img);
 
-				// link image with pagelink und banneruid as getvar
-			if ( $this->internal['currentRow']['url']) {
-				$linkArray = explode(' ', $this->internal['currentRow']['url']);
+					// link image with pagelink und banneruid as getvar
+				if ( $this->internal['currentRow']['url']) {
+					$linkArray = explode(' ', $this->internal['currentRow']['url']);
 					$wrappedSubpartArray['###bannerlink###'] = t3lib_div::trimExplode("|", $this->cObj->getTypoLink("|", $GLOBALS['TSFE']->id . " " . $linkArray[1] , array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $this->internal['currentRow']['uid'] ) ) );
 					$banner = join($wrappedSubpartArray['###bannerlink###'], $img);
 				} else {
 					$banner = $img;
 				}
+				$content = "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>\n<td nowrap valign=\"top\">".$banner."</td>\n</tr>\n</table>\n";
+				break;
 
-			$content = "<table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n<tr>\n<td nowrap valign=\"top\">".$banner."</td>\n</tr>\n</table>\n";
-			break;
+			case 1:
+				if ( $this->internal['currentRow']['url']) {
+					$linkArray = explode(' ', $this->internal['currentRow']['url']);
+					$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" =>  $this->internal['currentRow']['uid'] ) );
+				}
+				$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $this->internal['currentRow']['flash_width'] . "\" height=\"" . $this->internal['currentRow']['flash_height'] . "\">\n";
+				$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $this->internal['currentRow']['swf'] . "\" />\n";
+				$banner .= "<param name=\"quality\" value=\"high\" />\n";
+				$banner .= "<param name=\"allowScriptAccess\" value=\"sameDomain\" />\n";
+				$banner .= "<param name=\"menu\" value=\"false\" />\n";
+				$banner .= "<param name=\"wmode\" value=\"transparent\" />\n";
+				$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
+				$banner .= "<embed src=\"uploads/tx_macinabanners/" .  $this->internal['currentRow']['swf'] . "\" FlashVars=\"" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" .  $this->internal['currentRow']['flash_width'] . "\" height=\"" .  $this->internal['currentRow']['flash_height'] . "\"></embed>\n";
+				$banner .= "</object>\n";
+				$content = $banner;
+				break;
 
-		case 1:
-			if ( $this->internal['currentRow']['url']) {
-				$linkArray = explode(' ', $this->internal['currentRow']['url']);
-				$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" =>  $this->internal['currentRow']['uid'] ) );
-			}
-
-			$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $this->internal['currentRow']['flash_width'] . "\" height=\"" . $this->internal['currentRow']['flash_height'] . "\">\n";
-			$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $this->internal['currentRow']['swf'] . "\" />\n";
-			$banner .= "<param name=\"quality\" value=\"high\" />\n";
-			$banner .= "<param name=\"allowScriptAccess\" value=\"sameDomain\" />\n";
-			$banner .= "<param name=\"menu\" value=\"false\" />\n";
-			$banner .= "<param name=\"wmode\" value=\"transparent\" />\n";
-			$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
-			$banner .= "<embed src=\"uploads/tx_macinabanners/" .  $this->internal['currentRow']['swf'] . "\" FlashVars=\"" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" .  $this->internal['currentRow']['flash_width'] . "\" height=\"" .  $this->internal['currentRow']['flash_height'] . "\"></embed>\n";
-			$banner .= "</object>\n";
-
-			$content = $banner;
-			break;
-
-		case 2:
-			$content .= $this->internal['currentRow']['html'];
-			break;
+			case 2:
+				$content .= $this->internal['currentRow']['html'];
+				break;
 		}
-
 		return $content;
 	}
 
