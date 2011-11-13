@@ -359,7 +359,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$banner = $this->wrapwithstyles($banner, $styles);
 
 			// create the content by replacing the marker in the template
-			$markerArray = array ();
+			$markerArray = array();
 			$markerArray['###banner###'] = $banner;
 			$markerArray['###alttext###'] = $row['alttext'];
 
@@ -375,12 +375,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$markerArray['###clicks###'] = $row['clicks'];
 			$markerArray['###edit###'] = $this->pi_getEditPanel($row, 'tx_macinabanners_banners');
 
-			$rowdata .= $this->cObj->substituteMarkerArrayCached($tablerowarray, $markerArray, array (), $wrappedSubpartArray);
+			$rowdata .= $this->cObj->substituteMarkerArrayCached($tablerowarray, $markerArray, array(), $wrappedSubpartArray);
 		}
 		if($rowdata) {
-			$subpartArray = array ();
+			$subpartArray = array();
 			$subpartArray['###row###'] = $rowdata;
-			$content = $this->cObj->substituteMarkerArrayCached($template, array (), $subpartArray, array ());
+			$content = $this->cObj->substituteMarkerArrayCached($template, array(), $subpartArray, array());
 			return $content;
 		} else {
 			return '';  // no banners
