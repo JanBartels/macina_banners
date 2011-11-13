@@ -50,7 +50,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 	 * @return	string		html content
 	 */
 	function main($content, $conf) {
-		$this->pi_USER_INT_obj=1; // Any link to yourself won't expect to be cached (no cHash and no_cache=1)
+		$this->pi_USER_INT_obj = 1; // Any link to yourself won't expect to be cached (no cHash and no_cache=1)
 
 		// forwarder
 		if ($this->piVars['banneruid']) {
@@ -70,8 +70,9 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				);
 
 				// get URL
-				unset ($this->piVars['banneruid']);
-				header('Location: ' . $this->cObj->getTypoLink_URL($record['url']));
+				unset($this->piVars['banneruid']);
+				$url = t3lib_div::locationHeaderUrl($this->cObj->getTypoLink_URL($record['url']));
+				header('Location: '.$url);
 				exit;
 			}
 		}
@@ -267,12 +268,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 		// get main subpart
 		$templateMarker = '###template_banners###';
-		$template = array ();
+		$template = array();
 		$template = $this->cObj->getSubpart($this->templateCode, $templateMarker);
 
 		// get row subpart
 		$rowmarker = '###row###';
-		$tablerowarray = array ();
+		$tablerowarray = array();
 		$tablerowarray = $this->cObj->getSubpart($template, $rowmarker);
 
 		$rowdata = '';
@@ -292,7 +293,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			);
 
 			// assign borders to array
-			$styles = array (
+			$styles = array(
 				'margin-top' => $row['border_top'],
 				'margin-right' => $row['border_right'],
 				'margin-bottom' => $row['border_bottom'],
@@ -362,7 +363,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			elseif ($row['bannertype'] == 1)
 				$markerArray['###filename###'] = $row['swf'];
 			else
-				$markerArray['###filename###'] = "";
+				$markerArray['###filename###'] = '';
 
 			$markerArray['###url###'] = $row['url'];
 			$markerArray['###impressions###'] = $row['impressions'];
@@ -396,7 +397,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 		switch($this->internal['currentRow']['bannertype']) {
 			case 0:
-
 				/*
 				 * Grafik per Typoscript nach belieben zu konfigurieren
 				 * Danke an Gernot Ploiner
