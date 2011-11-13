@@ -159,7 +159,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 		// FIX pidList beachten !! Fuer Version 1.5.2
 		if (!empty($conf['pidList'])) {
-			$where .= ' AND pid IN ( '.$conf['pidList'].' ) ';
+			if (!empty($conf['pidList.'])) {
+				$where .= ' AND pid IN ('.$this->cObj->cObjGetSingle($conf['pidList'],$conf['pidList.']).') ';
+			}
+			else {
+				$where .= ' AND pid IN ('.$GLOBALS['TYPO3_DB']->cleanIntList($conf['pidList']).') ';
+			}
 		}
 
 		// order by
