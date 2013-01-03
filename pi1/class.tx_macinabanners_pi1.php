@@ -128,10 +128,10 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 	 * @return	string		html content
 	 */
 	function listView($content, $conf) {
-		$this->conf = $conf; // Setting the TypoScript passed to this function in $this->conf
+		$this->conf = $conf;
 
 		$this->pi_setPiVarDefaults();
-		$this->pi_loadLL();	// Loading the LOCAL_LANG values
+		$this->pi_loadLL();
 
 		$this->siteRelPath = $GLOBALS['TYPO3_LOADED_EXT'][$this->extKey]['siteRelPath'];
 
@@ -142,13 +142,22 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		$allowedPlacements = t3lib_div::trimExplode(',',$conf['placement']);
 		if (count($allowedPlacements) > 0) {
 			$placementClause = '';
-			foreach ($allowedPlacements AS $placement) {
-				if ($placementClause != '') {
-					$placementClause .= ' OR ';
+
+			foreach ($allowedPlacements AS $key => $placement) {
+				if (t3lib_div::inList("top,bottom,right,left", $placement)) {
+					$allowedPlacements[$key] = $placement;
+				} else {
+					$catWhere = ' AND description LIKE \'%' . $placement . '%\'';
+					$catRS = $this->pi_exec_query('tx_macinabanners_categories', 0, $catWhere, '', '', '');
+					$catRow = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($catRS);
+					$allowedPlacements[$key] = 'tx_macinabanners_categories:' . $catRow['uid'];
 				}
-				$placementClause .= 'placement LIKE "%'.$placement.'%"';
+				if ($placementClause != '')
+					$placementClause .= ", '" . $allowedPlacements[$key] . "'";
+				else
+					$placementClause .= "'" . $allowedPlacements[$key] . "'";
 			}
-			$where .= ' AND ('.$placementClause.')';
+			$where .= ' AND placement IN (' . $placementClause . ') ';
 		}
 
 		// alle banner die die aktuelle page id nicht in excludepages stehen haben
