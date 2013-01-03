@@ -339,6 +339,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 						$linkArray = explode(' ', $row['url']);
 						$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $row['uid'] ) );
 					}
+
 					$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\">\n";
 					$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $row['swf'] . "\" />\n";
 					$banner .= "<param name=\"quality\" value=\"high\" />\n";
