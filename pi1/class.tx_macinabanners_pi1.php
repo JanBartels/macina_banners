@@ -135,10 +135,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 		$this->siteRelPath = $GLOBALS['TYPO3_LOADED_EXT'][$this->extKey]['siteRelPath'];
 
-		// passende sprache oder sprachunabhaengig
 		$where = '(sys_language_uid = ' . $GLOBALS['TSFE']->sys_language_uid . ' OR sys_language_uid = -1)';
-
-		// enable fields
 		$where .= $this->cObj->enableFields('tx_macinabanners_banners');
 
 		// nur banner mit dem richtigen placement (left right top bottom) holen
@@ -167,7 +164,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			}
 		}
 
-		// order by
 		$orderBy = 'sorting';
 
 		//medialights
@@ -257,14 +253,12 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		}
 
 		$count = count($bannerdata);
-		// use mode "random"
 		if ($conf['mode'] == 'random' && $count > 1) {
 			$randomselectnum = rand(0, $count - 1);
 			$randombanner = $bannerdata[$randomselectnum];
 			unset($bannerdata);
 			$bannerdata[] = $randombanner;
 		} elseif ($conf['mode'] == 'random_all' && $count > 1) {
-			//media lights: use mode "random_all"
 			shuffle($bannerdata);
 		}
 
@@ -287,7 +281,6 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 		$qt = $conf['results_at_a_time'] < count($bannerdata) ? $conf['results_at_a_time'] : count($bannerdata);
 
 		for ($i=0; $i < $qt; $i++) {
-
 			$row = $bannerdata[$i];
 
 			// update impressionsfeld on rendering banner
@@ -346,10 +339,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 					$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
 					$banner .= "<embed src=\"uploads/tx_macinabanners/" . $row['swf'] . "\" FlashVars=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\"></embed>\n";
 					$banner .= "</object>\n";
-
-					#t3lib_div::debug(array($clickTAG, $linkArray[1]));
 					break;
-				//medialights: html mode
 				case 2:
 					$banner = $row['html'];
 					break;
@@ -383,7 +373,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$content = $this->cObj->substituteMarkerArrayCached($template, array(), $subpartArray, array());
 			return $content;
 		} else {
-			return '';  // no banners
+			return ''; // no banners
 		}
 	}
 
@@ -418,7 +408,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 
 				$img = $this->cObj->IMAGE($img);
 
-					// link image with pagelink und banneruid as getvar
+				// link image with pagelink und banneruid as getvar
 				if ( $this->internal['currentRow']['url']) {
 					$linkArray = explode(' ', $this->internal['currentRow']['url']);
 					$wrappedSubpartArray['###bannerlink###'] = t3lib_div::trimExplode("|", $this->cObj->getTypoLink("|", $GLOBALS['TSFE']->id . " " . $linkArray[1] , array( "no_cache" => 1 , $this->prefixId . "[banneruid]" => $this->internal['currentRow']['uid'] ) ) );
