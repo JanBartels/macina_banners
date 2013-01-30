@@ -4,3 +4,5 @@
 .metadata
 .settings
 *~
+.DS_Store
+.idea
