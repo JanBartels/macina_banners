@@ -341,14 +341,14 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 					}
 
 					$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\">\n";
-					$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $row['swf'] . "\" />\n";
-					$banner .= "<param name=\"quality\" value=\"high\" />\n";
+					$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $row['swf'] . "?clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
+					$banner .= "<param name=\"quality\" value=\"autohigh\" />\n";
 					$banner .= "<param name=\"allowScriptAccess\" value=\"sameDomain\" />\n";
 					$banner .= "<param name=\"menu\" value=\"false\" />\n";
 					$banner .= "<param name=\"wmode\" value=\"transparent\" />\n";
-					$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
-					$banner .= "<embed src=\"uploads/tx_macinabanners/" . $row['swf'] . "\" FlashVars=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\"></embed>\n";
+					$banner .= "<embed src=\"uploads/tx_macinabanners/" . $row['swf'] . "?clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"autohigh\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"; type=\"application/x-shockwave-flash\" width=\"" . $row['flash_width'] . "\" height=\"" . $row['flash_height'] . "\"></embed>\n";
 					$banner .= "</object>\n";
+
 					break;
 				case 2:
 					$banner = $row['html'];
