@@ -160,7 +160,7 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 			$where .= ' AND placement IN (' . $placementClause . ') ';
 		}
 
-		// alle banner die die aktuelle page id nicht in excludepages stehen haben
+		// all records which dont have their id in  excludepages
 		$where .= " AND NOT ( excludepages regexp '[[:<:]]".$GLOBALS['TSFE']->id."[[:>:]]' )";
 
 		// FIX pidList beachten !! Fuer Version 1.5.2
@@ -407,13 +407,13 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 				 * Danke an Gernot Ploiner
 				 */
 				$img = $this->conf['image.'];
-				$img['file'] = 'uploads/tx_macinabanners/' . $row['image'];
-				$img['alttext'] = $row['alttext'];
+				$img['file'] = 'uploads/tx_macinabanners/' . $this->internal['currentRow']['image'];
+				$img['alttext'] = $this->internal['currentRow']['alttext'];
 
-				$this->ImageName = 'uploads/tx_macinabanners/' . $row['image'];
+				$this->ImageName = 'uploads/tx_macinabanners/' . $this->internal['currentRow']['image'];
 				array_walk_recursive($img, array($this, 'replace_field_image'));
 
-				$this->AltText = $row['alttext'];
+				$this->AltText = $this->internal['currentRow']['alttext'];
 				array_walk_recursive($img, array($this, 'replace_field_alttext'));
 
 				$img = $this->cObj->IMAGE($img);
