@@ -434,14 +434,14 @@ class tx_macinabanners_pi1 extends tslib_pibase {
 					$linkArray = explode(' ', $this->internal['currentRow']['url']);
 					$clickTAG = t3lib_div::getIndpEnv('TYPO3_SITE_URL') . $this->cObj->getTypoLink_URL( $GLOBALS['TSFE']->id, array( "no_cache" => 1 , $this->prefixId . "[banneruid]" =>  $this->internal['currentRow']['uid'] ) );
 				}
+
 				$banner = "\n<object classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" codebase=\"http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0\" width=\"" . $this->internal['currentRow']['flash_width'] . "\" height=\"" . $this->internal['currentRow']['flash_height'] . "\">\n";
-				$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $this->internal['currentRow']['swf'] . "\" />\n";
-				$banner .= "<param name=\"quality\" value=\"high\" />\n";
+				$banner .= "<param name=\"movie\" value=\"uploads/tx_macinabanners/" . $this->internal['currentRow']['swf'] . "?clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
+				$banner .= "<param name=\"quality\" value=\"autohigh\" />\n";
 				$banner .= "<param name=\"allowScriptAccess\" value=\"sameDomain\" />\n";
 				$banner .= "<param name=\"menu\" value=\"false\" />\n";
 				$banner .= "<param name=\"wmode\" value=\"transparent\" />\n";
-				$banner .= "<param name=\"FlashVars\" value=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" />\n";
-				$banner .= "<embed src=\"uploads/tx_macinabanners/" .  $this->internal['currentRow']['swf'] . "\" FlashVars=\"clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"high\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"" .  $this->internal['currentRow']['flash_width'] . "\" height=\"" .  $this->internal['currentRow']['flash_height'] . "\"></embed>\n";
+				$banner .= "<embed src=\"uploads/tx_macinabanners/" . $this->internal['currentRow']['swf'] . "?clickTAG=" . urlencode($clickTAG) . "&amp;target=" . $linkArray[1] . "\" quality=\"autohigh\" wmode=\"transparent\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\"; type=\"application/x-shockwave-flash\" width=\"" . $this->internal['currentRow']['flash_width'] . "\" height=\"" . $this->internal['currentRow']['flash_height'] . "\"></embed>\n";
 				$banner .= "</object>\n";
 				$content = $banner;
 				break;
