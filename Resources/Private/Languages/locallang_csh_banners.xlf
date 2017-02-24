@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-02-01T18:32:03Z" product-name="macina_banners">
+		<header/>
+		<body>
+			<trans-unit id="parameters.description" xml:space="preserve">
+				<source>Valid parameters and values</source>
+			</trans-unit>
+			<trans-unit id="parameters.details" xml:space="preserve">
+				<source>Enter a list of parameter names with valid values, one parameter per line. E.g. RegionID_cbo = 13,17 will enable this banner if RegionID_cbo has the value 13 or 17. Note: To enable this feature you have to set the TS Parameter enableParameterRestriction to 1.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

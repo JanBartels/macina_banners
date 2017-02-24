@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-02-01T18:32:03Z" product-name="macina_banners">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.0" xml:space="preserve" approved="yes">
+				<source>top</source>
+				<target>oben</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.1" xml:space="preserve" approved="yes">
+				<source>right</source>
+				<target>rechts</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.2" xml:space="preserve" approved="yes">
+				<source>bottom</source>
+				<target>unten</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.3" xml:space="preserve" approved="yes">
+				<source>left</source>
+				<target>links</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement" xml:space="preserve" approved="yes">
+				<source>Placement</source>
+				<target>Positionierung</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode.I.0" xml:space="preserve" approved="yes">
+				<source>show all attached banner</source>
+				<target>alle dieser Seite angefügten Banner zeigen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode.I.1" xml:space="preserve" approved="yes">
+				<source>show random from attached banners</source>
+				<target>zufällig einen der angefügten Banner zeigen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode.I.2" xml:space="preserve" approved="yes">
+				<source>show all banners randomized</source>
+				<target>alle Banner in zufälliger Reihenfolge zeigen</target>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode" xml:space="preserve" approved="yes">
+				<source>Mode</source>
+				<target>Anzeigemodus</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners" xml:space="preserve" approved="yes">
+				<source>Banner</source>
+				<target>Banner</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.customer" xml:space="preserve" approved="yes">
+				<source>Customer</source>
+				<target>Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype.I.0" xml:space="preserve" approved="yes">
+				<source>image</source>
+				<target>Bild</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype.I.1" xml:space="preserve" approved="yes">
+				<source>flash (.swf)</source>
+				<target>Flash (.swf)</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype.I.2" xml:space="preserve" approved="yes">
+				<source>html</source>
+				<target>Html</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype" xml:space="preserve" approved="yes">
+				<source>Bannertype</source>
+				<target>Bannertyp</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.image" xml:space="preserve" approved="yes">
+				<source>Bannerimage</source>
+				<target>Bannerbilddatei</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.maxw" xml:space="preserve" approved="yes">
+				<source>maximum width</source>
+				<target>maximale Breite</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.alttext" xml:space="preserve" approved="yes">
+				<source>Image Text</source>
+				<target>Bildtext</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.url" xml:space="preserve" approved="yes">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.swf" xml:space="preserve" approved="yes">
+				<source>flashbanner</source>
+				<target>Flashbanner</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.flash_width" xml:space="preserve" approved="yes">
+				<source>width of flashmovie</source>
+				<target>Breite des Flashfilms</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.flash_height" xml:space="preserve" approved="yes">
+				<source>height of flashmovie</source>
+				<target>Höhe des Flashfilms</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.0" xml:space="preserve" approved="yes">
+				<source>top</source>
+				<target>oben</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.1" xml:space="preserve" approved="yes">
+				<source>right</source>
+				<target>rechts</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.2" xml:space="preserve" approved="yes">
+				<source>bottom</source>
+				<target>unten</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.3" xml:space="preserve" approved="yes">
+				<source>left</source>
+				<target>links</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement" xml:space="preserve" approved="yes">
+				<source>Placement</source>
+				<target>Positionierung</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_top" xml:space="preserve" approved="yes">
+				<source>top Border</source>
+				<target>oberer Rand</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_right" xml:space="preserve" approved="yes">
+				<source>right Border</source>
+				<target>rechter Rand</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_bottom" xml:space="preserve" approved="yes">
+				<source>bottom Border</source>
+				<target>unterer Rand</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_left" xml:space="preserve" approved="yes">
+				<source>left Border</source>
+				<target>linker Rand</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.pages" xml:space="preserve" approved="yes">
+				<source>Show Banner on this Pages ONLY</source>
+				<target>zeige Banner NUR auf diesen Seiten</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.recursiv" xml:space="preserve" approved="yes">
+				<source>including Subpages</source>
+				<target>inclusive Unterseiten</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.excludepages" xml:space="preserve" approved="yes">
+				<source>DONT show Banner on THIS Pages</source>
+				<target>zeige Banner NICHT auf diesen Seiten</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.impressions" xml:space="preserve" approved="yes">
+				<source>Impressions</source>
+				<target>Darstellungen</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.clicks" xml:space="preserve" approved="yes">
+				<source>Clickcount</source>
+				<target>Anzahl von Clicks</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.parameters" xml:space="preserve" approved="yes">
+				<source>Parameters</source>
+				<target>Parameter</target>    
+			</trans-unit>
+			<trans-unit id="tt_content.list_type_pi1" xml:space="preserve" approved="yes">
+				<source>Bannermodule</source>
+				<target>Bannermodul</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.sys_language_uid" xml:space="preserve" approved="yes">
+				<source>Banner language</source>
+				<target>Sprache des Banners</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.sys_language_independent" xml:space="preserve" approved="yes">
+				<source>Language independent (above seleceted language is ignored!)</source>
+				<target>Sprachunabhängig (obige Auswahl wird ignoriert!)</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.general" xml:space="preserve" approved="yes">
+				<source>General</source>
+				<target>Grundeinstellungen</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannerimage" xml:space="preserve" approved="yes">
+				<source>BannerImage</source>
+				<target>Bannergrafik</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.flashfilm" xml:space="preserve" approved="yes">
+				<source>Flashfile</source>
+				<target>Flashfilm</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.html" xml:space="preserve" approved="yes">
+				<source>HTML</source>
+				<target>HTML</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.view" xml:space="preserve" approved="yes">
+				<source>View</source>
+				<target>Anzeige</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.visibility" xml:space="preserve" approved="yes">
+				<source>Visibility</source>
+				<target>Sichtbarkeit</target>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.statistics" xml:space="preserve" approved="yes">
+				<source>Statistics</source>
+				<target>Statistik</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_macinabanners_categories" xml:space="preserve" approved="yes">
+				<source>Banner Category</source>
+				<target>Banner Kategorie</target>    
+			</trans-unit>    
+			<trans-unit id="tx_macinabanners_categories.description" xml:space="preserve" approved="yes">
+				<source>Description</source>
+				<target>Beschreibung</target>  		
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_categories.icon" xml:space="preserve" approved="yes">
+				<source>Icon</source>
+				<target>Icon</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

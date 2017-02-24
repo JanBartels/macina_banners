@@ -3,7 +3,7 @@ plugin.tx_macinabanners_pi1 {
 	parser < tt_content.text.20.parseFunc
 	
 	# template for plugin
-	templateFile = EXT:macina_banners/pi1/template.htm
+	templateFile = EXT:macina_banners/Resources/Private/Templates/template.htm
 		
 	# list of page ids where the banners should be taken from ( comma seperated f.E.: 1,5,7)
 	pidList = 

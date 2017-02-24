@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2017-02-01T18:32:03Z" product-name="macina_banners">
+		<header/>
+		<body>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.0" xml:space="preserve">
+				<source>top</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.1" xml:space="preserve">
+				<source>right</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.2" xml:space="preserve">
+				<source>bottom</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement.I.3" xml:space="preserve">
+				<source>left</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_placement" xml:space="preserve">
+				<source>Placement</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode.I.0" xml:space="preserve">
+				<source>show all attached banner</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode.I.1" xml:space="preserve">
+				<source>show random from attached banners</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode.I.2" xml:space="preserve">
+				<source>show all banners randomized</source>
+			</trans-unit>
+			<trans-unit id="tt_content.tx_macinabanners_mode" xml:space="preserve">
+				<source>Mode</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners" xml:space="preserve">
+				<source>Banner</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.customer" xml:space="preserve">
+				<source>Customer</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype.I.0" xml:space="preserve">
+				<source>image</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype.I.1" xml:space="preserve">
+				<source>flash (.swf)</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype.I.2" xml:space="preserve">
+				<source>html</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannertype" xml:space="preserve">
+				<source>Bannertype</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.image" xml:space="preserve">
+				<source>Bannerimage</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.maxw" xml:space="preserve">
+				<source>maximum width</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.alttext" xml:space="preserve">
+				<source>Image Text</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.url" xml:space="preserve">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.swf" xml:space="preserve">
+				<source>flashbanner</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.flash_width" xml:space="preserve">
+				<source>width of flashmovie</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.flash_height" xml:space="preserve">
+				<source>height of flashmovie</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.0" xml:space="preserve">
+				<source>top</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.1" xml:space="preserve">
+				<source>right</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.2" xml:space="preserve">
+				<source>bottom</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement.I.3" xml:space="preserve">
+				<source>left</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.placement" xml:space="preserve">
+				<source>Placement</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_top" xml:space="preserve">
+				<source>top Border</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_right" xml:space="preserve">
+				<source>right Border</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_bottom" xml:space="preserve">
+				<source>bottom Border</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.border_left" xml:space="preserve">
+				<source>left Border</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.pages" xml:space="preserve">
+				<source>Show Banner on this Pages ONLY</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.recursiv" xml:space="preserve">
+				<source>including Subpages</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.excludepages" xml:space="preserve">
+				<source>DONT show Banner on THIS Pages</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.impressions" xml:space="preserve">
+				<source>Impressions</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.clicks" xml:space="preserve">
+				<source>Clickcount</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.parameters" xml:space="preserve">
+				<source>Parameters</source>
+			</trans-unit>
+			<trans-unit id="tt_content.list_type_pi1" xml:space="preserve">
+				<source>Bannermodule</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.sys_language_uid" xml:space="preserve">
+				<source>Banner language</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.sys_language_independent" xml:space="preserve">
+				<source>Language independent (above seleceted language is ignored!)</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.general" xml:space="preserve">
+				<source>General</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.bannerimage" xml:space="preserve">
+				<source>BannerImage</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.flashfilm" xml:space="preserve">
+				<source>Flashfile</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.html" xml:space="preserve">
+				<source>HTML</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.view" xml:space="preserve">
+				<source>View</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.visibility" xml:space="preserve">
+				<source>Visibility</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_banners.statistics" xml:space="preserve">
+				<source>Statistics</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_macinabanners_categories" xml:space="preserve">
+				<source>Banner Category</source>
+			</trans-unit>    
+			<trans-unit id="tx_macinabanners_categories.description" xml:space="preserve">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_macinabanners_categories.icon" xml:space="preserve">
+				<source>Icon</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
