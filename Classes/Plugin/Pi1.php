@@ -332,7 +332,7 @@ class Pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 					$this->AltText = $row['alttext'];
 					array_walk_recursive($img, array($this, 'replace_field_alttext'));
 
-					$img = $this->cObj->IMAGE($img);
+					$img = $this->cObj->cObjGetSingle('IMAGE', $img);
 
 					// link image with pagelink und banneruid as getvar
 					if ($row['url']) {
@@ -435,7 +435,7 @@ class Pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 				$this->AltText = $this->internal['currentRow']['alttext'];
 				array_walk_recursive($img, array($this, 'replace_field_alttext'));
 
-				$img = $this->cObj->IMAGE($img);
+				$img = $this->cObj->cObjGetSingle('IMAGE', $img);
 
 					// link image with pagelink und banneruid as getvar
 				if ( $this->internal['currentRow']['url']) {
@@ -500,8 +500,3 @@ class Pi1 extends \TYPO3\CMS\Frontend\Plugin\AbstractPlugin {
 		}
 	}
 }
-
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/macina_banners/pi1/class.tx_macinabanners_pi1.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/macina_banners/pi1/class.tx_macinabanners_pi1.php']);
-}
-?>

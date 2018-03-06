@@ -33,24 +33,24 @@ return array(
 			'endtime' => 'endtime',
 			'fe_group' => 'fe_group',
 		),
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('macina_banners').'Resources/Public/Images/icon_tx_macinabanners_banners.gif',
+		'iconfile' => 'EXT:macina_banners/Resources/Public/Images/icon_tx_macinabanners_banners.gif',
 	),
-	'interface' => Array (
+	'interface' => array (
 		'showRecordFieldList' => 'hidden,starttime,endtime,fe_group,sys_language_uid,t3ver_label,l18n_parent,customer,bannertype,image,maxw,alttext,url,swf,flash_width,flash_height,html,placement,border_top,border_right,border_bottom,border_left,pages,recursiv,excludepages,impressions,clicks,parameters'
 	),
-	'columns' => Array (
-		'hidden' => Array (
+	'columns' => array (
+		'hidden' => array (
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.hidden',
-			'config' => Array (
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.disable',
+			'config' => array (
 				'type' => 'check',
 				'default' => '0'
 			)
 		),
-		'starttime' => Array (
+		'starttime' => array (
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.starttime',
-			'config' => Array (
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.starttime',
+			'config' => array (
 				'type' => 'input',
 				'size' => '8',
 				'max' => '20',
@@ -59,101 +59,113 @@ return array(
 				'checkbox' => '0'
 			)
 		),
-		'endtime' => Array (
+		'endtime' => array (
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.endtime',
-			'config' => Array (
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.endtime',
+			'config' => array (
 				'type' => 'input',
 				'size' => '8',
 				'max' => '20',
 				'eval' => 'date',
 				'checkbox' => '0',
 				'default' => '0',
-				'range' => Array (
-					'upper' => mktime(0,0,0,12,31,2020),
-					'lower' => mktime(0,0,0,date('m')-1,date('d'),date('Y'))
-				)
 			)
 		),
-		'fe_group' => Array (
+		'fe_group' => array (
 			'exclude' => 1,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.fe_group',
-			'config' => Array (
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.fe_group',
+			'config' => array(
 				'type' => 'select',
-				'items' => Array (
-					Array('', 0),
-					Array('LLL:EXT:lang/locallang_general.xlf:LGL.hide_at_login', -1),
-					Array('LLL:EXT:lang/locallang_general.xlf:LGL.any_login', -2),
-					Array('LLL:EXT:lang/locallang_general.xlf:LGL.usergroups', '--div--')
+				'renderType' => 'selectMultipleSideBySide',
+				'size' => 7,
+				'maxitems' => 20,
+				'items' => array(
+					array(
+						'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.hide_at_login',
+						-1
+					),
+					array(
+						'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.any_login',
+						-2
+					),
+					array(
+						'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.usergroups',
+						'--div--'
+					)
 				),
-				'foreign_table' => 'fe_groups'
+				'exclusiveKeys' => '-1,-2',
+				'foreign_table' => 'fe_groups',
+				'foreign_table_where' => 'ORDER BY fe_groups.title',
+				'enableMultiSelectFilterTextfield' => true
 			)
 		),
-		'customer' => Array (
+		'customer' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.customer',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '30',
 				'eval' => 'required',
 			)
 		),
-		'bannertype' => Array (
+		'bannertype' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype',
-			'config' => Array (
+			'config' => array (
 				'type' => 'select',
-				'items' => Array (
-					Array('LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype.I.0', '0'),
-					Array('LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype.I.1', '1'),
-					Array('LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype.I.2', '2'),
+				'renderType' => 'selectSingle',
+				'items' => array (
+					array('LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype.I.0', '0'),
+					array('LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype.I.1', '1'),
+					array('LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannertype.I.2', '2'),
 				),
 				'size' => 1,
 				'maxitems' => 1,
 			)
 		),
-		't3ver_label' => Array (
+		't3ver_label' => array (
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.versionLabel',
-			'config' => Array (
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.versionLabel',
+			'config' => array (
 				'type' => 'input',
 				'size' => 30,
 				'max' => 30,
 			)
 		),
-		'sys_language_uid' => Array (
-			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
-			'config' => Array (
+		'sys_language_uid' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.language',
+			'config' => array(
 				'type' => 'select',
-				'foreign_table' => 'sys_language',
-				'foreign_table_where' => 'ORDER BY sys_language.title',
-				'items' => Array(
-					Array('LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',-1),
-					Array('LLL:EXT:lang/locallang_general.xlf:LGL.default_value',0)
+				'renderType' => 'selectSingle',
+				'special' => 'languages',
+				'items' => array(
+					array('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages', -1, 'flags-multiple'),
+					array('LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.default_value', 0)
 				)
-			)
+			),
 		),
-		'l18n_parent' => Array (
+		'l18n_parent' => array (
 			'displayCond' => 'FIELD:sys_language_uid:>:0',
 			'exclude' => 0,
-			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
-			'config' => Array (
+			'label' => 'LLL:EXT:lang/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+			'config' => array (
 				'type' => 'select',
-				'items' => Array (
-					Array('', 0),
+				'renderType' => 'selectSingle',
+				'items' => array (
+					array('', 0),
 				),
 				'foreign_table' => 'tx_macinabanners_banners',
 				'foreign_table_where' => 'AND tx_macinabanners_banners.pid=###CURRENT_PID### AND  tx_macinabanners_banners.sys_language_uid IN (-1,0)',
 			)
 		),
-		'l18n_diffsource' => Array(
+		'l18n_diffsource' => array(
 			'config'=>array('type'=>'passthrough')
 		),
-		'image' => Array (
+		'image' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.image',
-			'config' => Array (
+			'config' => array (
 				'type' => 'group',
 				'internal_type' => 'file',
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
@@ -165,38 +177,38 @@ return array(
 				'maxitems' => 1,
 			)
 		),
-		'maxw' => Array (
+		'maxw' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.maxw',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'eval' => 'int,nospace',
 			)
 		),
-		'alttext' => Array (
+		'alttext' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.alttext',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '30',
 			)
 		),
-		'url' => Array (
+		'url' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.url',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '15',
 				'max' => '255',
 				'checkbox' => '',
 				'eval' => 'trim',
 				'softref' => 'typolink',
-				'wizards' => Array(
-					'link' => Array(
+				'wizards' => array(
+					'link' => array(
 						'type' => 'popup',
 						'title' => 'LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:header_link_formlabel',
-						'icon' => 'link_popup.gif',
+						'icon' => 'actions-wizard-link',
 						'module' => array(
 							'name' => 'wizard_link'
 						 ) ,
@@ -209,10 +221,10 @@ return array(
 				)
 			)
 		),
-		'swf' => Array (
+		'swf' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.swf',
-			'config' => Array (
+			'config' => array (
 				'type' => 'group',
 				'internal_type' => 'file',
 				'allowed' => '',
@@ -224,38 +236,38 @@ return array(
 				'maxitems' => 1,
 			)
 		),
-		'flash_width' => Array (
+		'flash_width' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.flash_width',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'eval' => 'required,int,nospace',
 			)
 		),
-		'flash_height' => Array (
+		'flash_height' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.flash_height',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'eval' => 'required,int,nospace',
 			)
 		),
 		//medialights: new type html
-		'html' => Array (
+		'html' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.html',
-			'config' => Array (
+			'config' => array (
 				'type' => 'text',
 				'cols' => '30',
 				'rows' => '5',
 			)
 		),
-		'placement' => Array (
+		'placement' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.placement',
-			'config' => Array (
+			'config' => array (
 				'type' => 'select',
 				'itemsProcFunc' => 'JBartels\\MacinaBanners\\BackendHelper\\Placement->main',
 				'renderType' => $renderType,
@@ -263,54 +275,54 @@ return array(
 				'maxitems' => 50,
 			)
 		),
-		'border_top' => Array (
+		'border_top' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.border_top',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'max' => '4',
-				'range' => Array ('lower'=>0,'upper'=>1000),
+				'range' => array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'border_right' => Array (
+		'border_right' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.border_right',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'max' => '4',
-				'range' => Array ('lower'=>0,'upper'=>1000),
+				'range' => array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'border_bottom' => Array (
+		'border_bottom' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.border_bottom',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'max' => '4',
-				'range' => Array ('lower'=>0,'upper'=>1000),
+				'range' => array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'border_left' => Array (
+		'border_left' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.border_left',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '5',
 				'max' => '4',
-				'range' => Array ('lower'=>0,'upper'=>1000),
+				'range' => array ('lower'=>0,'upper'=>1000),
 				'eval' => 'int,nospace',
 			)
 		),
-		'pages' => Array (
+		'pages' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.pages',
-			'config' => Array (
+			'config' => array (
 				'type' => 'group',
 				'internal_type' => 'db',
 				'allowed' => 'pages',
@@ -319,18 +331,18 @@ return array(
 				'maxitems' => 100,
 			)
 		),
-		'recursiv' => Array (
+		'recursiv' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.recursiv',
-			'config' => Array (
+			'config' => array (
 				'type' => 'check',
 				'default' => '0'
 			)
 		),
-		'excludepages' => Array (
+		'excludepages' => array (
 			'exclude' => 0,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.excludepages',
-			'config' => Array (
+			'config' => array (
 				'type' => 'group',
 				'internal_type' => 'db',
 				'allowed' => 'pages',
@@ -339,50 +351,48 @@ return array(
 				'maxitems' => 100,
 			)
 		),
-		'impressions' => Array (
+		'impressions' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.impressions',
-			'config' => Array (
+			'config' => array (
 				'type' => 'none',
 			)
 		),
-		'clicks' => Array (
+		'clicks' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.clicks',
-			'config' => Array (
+			'config' => array (
 				'type' => 'none',
 			)
 		),
-		'parameters' => Array (
+		'parameters' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.parameters',
-			'config' => Array (
+			'config' => array (
 				'type' => 'text',
 				'cols' => '30',
 				'rows' => '5',
 			)
 		),
 	),
-	'types' => Array (
-		'0' => Array(
+	'types' => array (
+		'0' => array(
 				'showitem' => '--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.general,customer,l18n_parent,bannertype,sys_language_uid,parameters,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.bannerimage,image;;3;;1-1-1, alttext,url,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.view, placement;;;;1-1-1,pages, recursiv, excludepages,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.visibility,hidden;;1;;1-1-1,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.statistics,impressions, clicks'
 		),
-		'1' => Array(
+		'1' => array(
 				'showitem' => '--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.general,customer,l18n_parent,bannertype,sys_language_uid,parameters,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.flashfilm,swf;;;;1-1-1, url, flash_width, flash_height;;2,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.view, placement;;;;1-1-1,pages, recursiv, excludepages,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.visibility,hidden;;1;;1-1-1,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.statistics,impressions, clicks'
 		),
-		'2' => Array(
+		'2' => array(
 				'showitem' => '--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.general,customer,l18n_parent,bannertype,sys_language_uid,parameters,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.html,html,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.view, placement;;;;1-1-1,pages, recursiv, excludepages,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.visibility,hidden;;1;;1-1-1,--div--;LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_banners.statistics,impressions, clicks'
 		),
 	),
-	// '1' => Array('showitem' => 'bannertype, sys_language_uid, l18n_parent, swf;;;;1-1-1, flash_width, flash_height;;2, placement;;;;1-1-1, pages, recursiv, excludepages, customer;;;;1-1-1, impressions, hidden;;1;;1-1-1')
-	// '0' => Array('showitem' => 'bannertype, sys_language_uid, l18n_parent, image;;3;;1-1-1, alttext, url, placement;;;;1-1-1, pages, recursiv, excludepages, customer;;;;1-1-1,impressions, clicks, hidden;;1;;1-1-1'),;
-	'palettes' => Array (
-		'1' => Array('showitem' => 'starttime, endtime, fe_group'),
-		'2' => Array('showitem' => 'border_left, border_top, border_right, border_bottom'),
-		'3' => Array('showitem' => 'maxw, border_left, border_top, border_right, border_bottom'),
-		'4' => Array('showitem' => ''),
-		'5' => Array('showitem' => 'impressions')
+	// '1' => array('showitem' => 'bannertype, sys_language_uid, l18n_parent, swf;;;;1-1-1, flash_width, flash_height;;2, placement;;;;1-1-1, pages, recursiv, excludepages, customer;;;;1-1-1, impressions, hidden;;1;;1-1-1')
+	// '0' => array('showitem' => 'bannertype, sys_language_uid, l18n_parent, image;;3;;1-1-1, alttext, url, placement;;;;1-1-1, pages, recursiv, excludepages, customer;;;;1-1-1,impressions, clicks, hidden;;1;;1-1-1'),;
+	'palettes' => array (
+		'1' => array('showitem' => 'starttime, endtime, --linebreak--, fe_group'),
+		'2' => array('showitem' => 'border_left, border_top, border_right, border_bottom'),
+		'3' => array('showitem' => 'maxw, border_left, border_top, border_right, border_bottom'),
+		'4' => array('showitem' => ''),
+		'5' => array('showitem' => 'impressions')
 	)
 );
-
-?>

@@ -9,26 +9,26 @@ return array(
 		'crdate' => 'crdate',
 		'cruser_id' => 'cruser_id',
 		'default_sortby' => 'ORDER BY description',
-		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('macina_banners').'ext_icon.gif',
+		'iconfile' => 'EXT:macina_banners/ext_icon.gif',
 		'thumbnail' => 'icon',
 	),
-	'interface' => Array (
+	'interface' => array (
 		'showRecordFieldList' => 'description'
 	),
-	'columns' => Array (
-		'description' => Array (
+	'columns' => array (
+		'description' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_categories.description',
-			'config' => Array (
+			'config' => array (
 				'type' => 'input',
 				'size' => '30',
 				'eval' => 'trim',
 			)
 		),
-		'icon' => Array (
+		'icon' => array (
 			'exclude' => 1,
 			'label' => 'LLL:EXT:macina_banners/Resources/Private/Languages/locallang_db.xlf:tx_macinabanners_categories.icon',
-			'config' => Array (
+			'config' => array (
 				'type' => 'group',
 				'internal_type' => 'file',
 				'allowed' => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
@@ -41,12 +41,10 @@ return array(
 			)
 		),
 	),
-	'types' => Array (
-		'0' => Array('showitem' => 'description;;;;1-1-1, icon')
+	'types' => array (
+		'0' => array('showitem' => 'description;;;;1-1-1, icon')
 	),
-	'palettes' => Array (
-		'1' => Array('showitem' => '')
+	'palettes' => array (
+		'1' => array('showitem' => '')
 	)
 );
-
-?>

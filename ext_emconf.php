@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'Bannermanagement Tool with Bannerplacement on Frontend, Bannerrotation, sheduling, and Backendstatistics. Modified by media lights gmbh (Markus Friedrich)',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '1.5.3',
+	'version' => '1.5.5',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -34,8 +34,8 @@ $EM_CONF[$_EXTKEY] = array(
 	'CGLcompliance_note' => '',
 	'constraints' => array(
 		'depends' => array(
-			'php' => '5.5.0-0.0.0',
-			'typo3' => '7.6.0-7.6.99',
+			'php' => '5.5.0-7.1.99',
+			'typo3' => '7.6.0-8.7.99',
 		),
 		'conflicts' => array(
 		),
